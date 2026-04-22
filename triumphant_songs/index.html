@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dispensational Gospel Mission Hymnal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div>
+        <h1>Dispensational Gospel Mission Hymnal</h1>
+        <p>Triumphant Songs</p>
+      </div>
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </header>
+
+  <div class="controls" id="controls">
+    <input type="text" id="search" placeholder="Search hymns by title or lyrics..." />
+    <select id="category">
+      <option value="">All Categories</option>
+      <option value="Praise & Opening">Praise</option>
+      <option value="The Gospel">Worship</option>
+      <option value="Warning & Entreaty">Christmas</option>
+      <option value="Repentance & Decision">Easter</option>
+      <option value="Christian Life & Service">Christian Life & Service</option>
+      <option value="The Holy Spirit">The Holy Spirit</option>
+      <option value="Prayer & Consecration">Prayer & Consecration</option>
+      <option value="Testimony & Assurance">Testimony & Assurance</option>
+      <option value="Missionary & Workers">Missionary & Workers</option>
+      <option value="Children & young people">Children & young people</option>
+      <option value="Special Solos">Special Solos</option>
+      <option value="Inspirational Choruses">Inspirational Choruses</option>
+      <option value="Favorites">Favorites</option>
+    </select>
+  </div>
+
+  <main>
+    <div class="hymn-list" id="hymnList"></div>
+    
+    <div class="lyrics-view" id="lyricsView">
+      <div class="lyrics-header">
+        <button class="back-btn" onclick="showList()">← Back</button>
+        <button class="icon-btn" id="favBtn" onclick="toggleFavorite()">☆</button>
+      </div>
+      <div class="lyrics-content" id="lyricsContent"></div>
+      <audio id="hymnAudio" controls></audio>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
