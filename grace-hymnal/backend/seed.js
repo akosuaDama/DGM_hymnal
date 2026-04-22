@@ -1161,3 +1161,38 @@ Our Maker, Defender, Redeemer, and Friend.`,
     audio: "/audio/oworshiptheking.mp3"
   }
 ];
+db.serialize(() => {
+  db.run(`CREATE TABLE IF NOT EXISTS hymns (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    number INTEGER,
+    title TEXT,
+    author TEXT,
+    category TEXT,
+    lyrics TEXT,
+    audio TEXT,
+    views INTEGER DEFAULT 0,
+    likes INTEGER DEFAULT 0
+  )`, (err) => {
+    if (err) console.error('Table create error:', err);
+    else console.log('Table created');
+  });
+
+  const stmt = db.prepare("INSERT INTO hymns (number, title, author, category, lyrics, audio) VALUES (?, ?, ?, ?, ?, ?)", (err) => {
+    if (err) console.error('Prepare error:', err);
+  });
+
+  hymns.forEach((h, i) => {
+    stmt.run(h.number, h.title, h.author, h.category, h.lyrics, h.audio, (err) => {
+      if (err) console.error(`Insert error on hymn ${i+1}:`, err);
+    });
+  });
+
+  stmt.finalize((err) => {
+    if (err) console.error('Finalize error:', err);
+    console.log(`Seeded ${hymns.length} hymns`);
+    db.close((err) => {
+      if (err) console.error('Close error:', err);
+      console.log('Database closed');
+    });
+  });
+});
